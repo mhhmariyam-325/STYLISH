@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>STYLISH</title>
+
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="navbar">
+
+        <!-- Logo -->
+        <div class="logo">
+            STYLISH
+        </div>
+
+
+        <!-- Main Navigation -->
+        <nav>
+
+            <a href="index.html" class="active">Home</a>
+
+            <a href="#">New Arrivals</a>
+
+            <a href="#">Men</a>
+
+            <a href="#">Women</a>
+
+            <a href="#">Contact</a>
+
+            <a href="#">Support</a>
+
+        </nav>
+
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search"
+            >
+
+            <button onclick="searchProducts()">
+                🔍
+            </button>
+
+        </div>
+
+
+        <!-- Login -->
+        <div class="login">
+            <a href="#">Login</a>
+        </div>
+
+
+        <!-- Wishlist and Cart -->
+        <div class="nav-icons">
+
+            <a href="#" class="wishlist-icon" title="Wishlist">
+                ♡
+            </a>
+
+            <a href="#" class="cart-icon" title="Add to cart">
+                🛒
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <section class="hero">
+
+        <!-- Hero Text -->
+        <div class="hero-content">
+
+            <p class="small-title">
+                NEW COLLECTION
+            </p>
+
+            <h1>
+                STEP INTO <span>STYLE</span>
+            </h1>
+
+            <p class="hero-text">
+                Discover the latest sneakers
+                <br>
+                for men and women
+            </p>
+
+            <button
+                class="shop-button"
+                onclick="shopNow()"
+            >
+                SHOP NOW
+            </button>
+
+        </div>
+
+
+        <!-- Hero Image -->
+        <div class="hero-image">
+
+            <img
+                src="images/hero.jpg"
+                alt="Sneaker"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SHOP BY CATEGORY
+    ========================== -->
+
+    <section class="categories-section">
+
+        <p class="section-subtitle">
+            EXPLORE
+        </p>
+
+        <h2>
+            SHOP BY CATEGORY
+        </h2>
+
+
+        <div class="categories">
+
+
+            <!-- MEN -->
+            <div class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/pic6.jpg"
+                        alt="Men's Sneakers"
+                    >
+
+                </div>
+
+                <h3>
+                    Men
+                </h3>
+
+                <a
+                    href="#"
+                    onclick="categorySelected('Men')"
+                >
+                    Shop Now
+                </a>
+
+            </div>
+
+
+            <!-- WOMEN -->
+            <div class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/pic8.jpg"
+                        alt="Women's Sneakers"
+                    >
+
+                </div>
+
+                <h3>
+                    Women
+                </h3>
+
+                <a
+                    href="#"
+                    onclick="categorySelected('Women')"
+                >
+                    Shop Now
+                </a>
+
+            </div>
+
+
+            <!-- NEW ARRIVALS -->
+            <div class="category-card">
+
+                <div class="category-image">
+
+                    <img
+                        src="images/pic2.jpg"
+                        alt="New Arrival Sneakers"
+                    >
+
+                </div>
+
+                <h3>
+                    New Arrivals
+                </h3>
+
+                <a
+                    href="#"
+                    onclick="categorySelected('New Arrivals')"
+                >
+                    Shop Now
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
