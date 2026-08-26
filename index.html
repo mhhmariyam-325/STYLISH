@@ -5,26 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>STYLISH</title>
+    <title>STYLISH | Premium Sneakers</title>
 
-    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="newstyle.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
-    <!-- =========================
+
+    <!-- =====================================
+         TOP OFFER BAR
+    ====================================== -->
+
+    <div class="top-bar">
+        FREE SHIPPING ON ORDERS OVER Rs. 10,000
+    </div>
+
+
+
+    <!-- =====================================
          HEADER
-    ========================== -->
+    ====================================== -->
 
     <header class="navbar">
 
-        <!-- Logo -->
         <div class="logo">
-            STYLISH
+            STYLISH<span>.</span>
         </div>
 
 
-        <!-- Main Navigation -->
         <nav>
 
             <a href="index.html" class="active">Home</a>
@@ -42,37 +64,42 @@
         </nav>
 
 
-        <!-- Search -->
         <div class="search-box">
 
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Search"
+                placeholder="Search sneakers..."
             >
 
             <button onclick="searchProducts()">
-                🔍
+                <i class="fa-solid fa-magnifying-glass"></i>
             </button>
 
         </div>
 
 
-        <!-- Login -->
         <div class="login">
-            <a href="#">Login</a>
+
+            <a href="#">
+                <i class="fa-regular fa-user"></i>
+                Login
+            </a>
+
         </div>
 
 
-        <!-- Wishlist and Cart -->
         <div class="nav-icons">
 
             <a href="#" class="wishlist-icon" title="Wishlist">
-                ♡
+                <i class="fa-regular fa-heart"></i>
             </a>
 
-            <a href="#" class="cart-icon" title="Add to cart">
-                🛒
+            <a href="#" class="cart-icon" title="Shopping Cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                <span class="cart-count">0</span>
+
             </a>
 
         </div>
@@ -80,71 +107,174 @@
     </header>
 
 
-    <!-- =========================
+
+    <!-- =====================================
          HERO SECTION
-    ========================== -->
+    ====================================== -->
 
     <section class="hero">
 
-        <!-- Hero Text -->
         <div class="hero-content">
 
             <p class="small-title">
-                NEW COLLECTION
+                NEW COLLECTION 2026
             </p>
+
 
             <h1>
-                STEP INTO <span>STYLE</span>
+                STEP INTO
+                <span>STYLE.</span>
             </h1>
 
+
             <p class="hero-text">
-                Discover the latest sneakers
-                <br>
-                for men and women
+                Discover premium sneakers designed
+                for comfort, confidence and everyday style.
             </p>
 
-            <button
-                class="shop-button"
-                onclick="shopNow()"
-            >
-                SHOP NOW
-            </button>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="shop-button"
+                    onclick="shopNow()"
+                >
+                    SHOP NOW
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+
+                <a href="#categories" class="explore-button">
+                    EXPLORE COLLECTION
+                </a>
+
+            </div>
 
         </div>
 
 
-        <!-- Hero Image -->
         <div class="hero-image">
+
+            <div class="hero-circle"></div>
 
             <img
                 src="images/hero.jpg"
-                alt="Sneaker"
+                alt="Featured STYLISH sneaker"
             >
+
+            <div class="hero-label">
+                <span>STYLISH</span>
+                PREMIUM COLLECTION
+            </div>
 
         </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================
+         FEATURES
+    ====================================== -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-truck-fast"></i>
+            </div>
+
+            <div>
+                <h4>Fast Delivery</h4>
+                <p>Quick & reliable delivery</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+                <h4>100% Authentic</h4>
+                <p>Original products only</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-rotate-left"></i>
+            </div>
+
+            <div>
+                <h4>Easy Returns</h4>
+                <p>Simple return policy</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div>
+                <h4>Customer Support</h4>
+                <p>We're here to help</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
          SHOP BY CATEGORY
-    ========================== -->
+         
+         YOUR ORIGINAL SECTION
+         PICTURES ARE NOT CHANGED
+    ====================================== -->
 
-    <section class="categories-section">
+    <section class="categories-section" id="categories">
 
-        <p class="section-subtitle">
-            EXPLORE
-        </p>
+        <div class="section-heading">
 
-        <h2>
-            SHOP BY CATEGORY
-        </h2>
+            <div>
+
+                <p class="section-subtitle">
+                    EXPLORE
+                </p>
+
+                <h2>
+                    SHOP BY CATEGORY
+                </h2>
+
+            </div>
+
+
+            <a href="#" class="view-all">
+                View All
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
 
 
         <div class="categories">
 
 
             <!-- MEN -->
+
             <div class="category-card">
 
                 <div class="category-image">
@@ -154,23 +284,35 @@
                         alt="Men's Sneakers"
                     >
 
+                    <div class="category-overlay">
+                        <span>COLLECTION</span>
+                    </div>
+
                 </div>
 
-                <h3>
-                    Men
-                </h3>
 
-                <a
-                    href="#"
-                    onclick="categorySelected('Men')"
-                >
-                    Shop Now
-                </a>
+                <div class="category-info">
+
+                    <h3>
+                        Men
+                    </h3>
+
+                    <a
+                        href="#"
+                        onclick="categorySelected('Men')"
+                    >
+                        Shop Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
 
             </div>
 
 
+
             <!-- WOMEN -->
+
             <div class="category-card">
 
                 <div class="category-image">
@@ -180,44 +322,249 @@
                         alt="Women's Sneakers"
                     >
 
+                    <div class="category-overlay">
+                        <span>COLLECTION</span>
+                    </div>
+
                 </div>
 
-                <h3>
-                    Women
-                </h3>
 
-                <a
-                    href="#"
-                    onclick="categorySelected('Women')"
-                >
-                    Shop Now
-                </a>
+                <div class="category-info">
+
+                    <h3>
+                        Women
+                    </h3>
+
+                    <a
+                        href="#"
+                        onclick="categorySelected('Women')"
+                    >
+                        Shop Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
 
             </div>
 
 
+
             <!-- NEW ARRIVALS -->
+
             <div class="category-card">
 
                 <div class="category-image">
 
-                    <img
-                        src="images/pic2.jpg"
-                        alt="New Arrival Sneakers"
-                    >
+                    
+                    ><img
+                        src="images/pic7.jpg"
+                            alt="Premium sneaker"
+>
+
+                    <div class="category-overlay">
+                        <span>JUST DROPPED</span>
+                    </div>
 
                 </div>
 
-                <h3>
-                    New Arrivals
-                </h3>
 
-                <a
-                    href="#"
-                    onclick="categorySelected('New Arrivals')"
-                >
-                    Shop Now
-                </a>
+                <div class="category-info">
+
+                    <h3>
+                        New Arrivals
+                    </h3>
+
+                    <a
+                        href="#"
+                        onclick="categorySelected('New Arrivals')"
+                    >
+                        Shop Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+<!-- =====================================
+         PROMOTION
+    ====================================== -->
+
+    <section class="promotion">
+
+        <div class="promotion-content">
+
+            <p>
+                LIMITED TIME OFFER
+            </p>
+
+            <h2>
+                STEP INTO<br>
+                THE SALE.
+            </h2>
+
+            <span>
+                UP TO 40% OFF SELECTED STYLES
+            </span>
+
+
+            <a href="#">
+                SHOP SALE
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="promotion-design">
+
+            <div class="circle"></div>
+
+            <span>
+                40%
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         ABOUT STYLISH
+    ====================================== -->
+
+    <section class="about-section">
+
+        <div class="about-image">
+
+            <img
+                src="images/hero.jpg"
+                alt="STYLISH sneakers"
+            >
+
+        </div>
+
+
+        <div class="about-content">
+
+            <p class="section-subtitle">
+                ABOUT STYLISH
+            </p>
+
+            <h2>
+                Made for every step.
+            </h2>
+
+            <p>
+                STYLISH brings together modern sneaker culture,
+                everyday comfort and timeless design. We believe
+                the right pair of sneakers should help you feel
+                confident wherever you go.
+            </p>
+
+            <a href="#" class="about-button">
+                DISCOVER OUR STORY
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         CUSTOMER REVIEWS
+    ====================================== -->
+
+    <section class="reviews-section">
+
+        <div class="center-heading">
+
+            <p class="section-subtitle">
+                CUSTOMER LOVE
+            </p>
+
+            <h2>
+                WHAT THEY SAY
+            </h2>
+
+        </div>
+
+
+        <div class="reviews-grid">
+
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "The shoes look amazing and are very
+                    comfortable. Delivery was also really fast."
+                </p>
+
+                <h4>
+                    Sarah M.
+                </h4>
+
+                <span>
+                    Verified Customer
+                </span>
+
+            </div>
+
+
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Great designs and excellent quality.
+                    STYLISH is now my favourite sneaker store."
+                </p>
+
+                <h4>
+                    Ahmed R.
+                </h4>
+
+                <span>
+                    Verified Customer
+                </span>
+
+            </div>
+
+
+
+            <div class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "The website was easy to use and my
+                    sneakers arrived exactly as expected."
+                </p>
+
+                <h4>
+                    Lisa K.
+                </h4>
+
+                <span>
+                    Verified Customer
+                </span>
 
             </div>
 
@@ -227,9 +574,155 @@
     </section>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
+
+    <!-- =====================================
+         NEWSLETTER
+    ====================================== -->
+
+    <section class="newsletter">
+
+        <div>
+
+            <p>
+                STAY IN THE LOOP
+            </p>
+
+            <h2>
+                Get the latest drops.
+            </h2>
+
+            <span>
+                New arrivals, exclusive offers and sneaker news.
+            </span>
+
+        </div>
+
+
+        <form onsubmit="subscribeNewsletter(event)">
+
+            <input
+                type="email"
+                id="emailInput"
+                placeholder="Your email address"
+                required
+            >
+
+            <button type="submit">
+                SUBSCRIBE
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+                    STYLISH<span>.</span>
+                </div>
+
+                <p>
+                    Premium sneakers for every step
+                    of your journey.
+                </p>
+
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>SHOP</h4>
+
+                <a href="#">Men</a>
+
+                <a href="#">Women</a>
+
+                <a href="#">New Arrivals</a>
+
+                <a href="#">Sale</a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>HELP</h4>
+
+                <a href="#">Contact</a>
+
+                <a href="#">Shipping</a>
+
+                <a href="#">Returns</a>
+
+                <a href="#">FAQ</a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>ABOUT</h4>
+
+                <a href="#">Our Story</a>
+
+                <a href="#">Privacy Policy</a>
+
+                <a href="#">Terms</a>
+
+                <a href="#">Support</a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 STYLISH. All rights reserved.
+            </p>
+
+            <p>
+                Premium Sneakers • Sri Lanka
+            </p>
+
+        </div>
+
+    </footer>
+
+
 
     <script src="script.js"></script>
 

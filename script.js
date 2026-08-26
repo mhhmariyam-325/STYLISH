@@ -1,69 +1,195 @@
-// ==============================
-// SHOP NOW BUTTON
-// ==============================
+// ==========================================
+// SHOP NOW
+// ==========================================
 
 function shopNow() {
-    alert("Welcome to Sneaker Store!");
-}
 
+    const categories = document.getElementById("categories");
 
-// ==============================
-// SEARCH
-// ==============================
-
-function searchProducts() {
-
-    const searchText = document.getElementById("searchInput").value;
-
-    if (searchText.trim() === "") {
-        alert("Please enter a product to search.");
-    } else {
-        alert("Searching for: " + searchText);
+    if (categories) {
+        categories.scrollIntoView({
+            behavior: "smooth"
+        });
     }
 
 }
 
 
-// ==============================
+
+// ==========================================
+// SEARCH
+// ==========================================
+
+function searchProducts() {
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const searchText =
+        searchInput.value.trim();
+
+    if (searchText === "") {
+
+        alert("Please enter a product to search.");
+
+        return;
+    }
+
+    alert("Searching for: " + searchText);
+
+}
+
+
+
+// ==========================================
 // CATEGORY SELECTION
-// ==============================
+// ==========================================
 
 function categorySelected(category) {
+
+    event.preventDefault();
 
     alert("You selected: " + category);
 
 }
 
 
-// ==============================
+
+// ==========================================
 // ADD TO CART
-// ==============================
+// ==========================================
+
+let cartCount = 0;
+
 
 function addToCart(productName) {
 
-    alert(productName + " has been added to your cart.");
+    cartCount++;
+
+    const cartCounter =
+        document.querySelector(".cart-count");
+
+    if (cartCounter) {
+
+        cartCounter.textContent = cartCount;
+
+    }
+
+    alert(
+        productName +
+        " has been added to your cart."
+    );
 
 }
 
 
-// ==============================
-// WISHLIST
-// ==============================
 
-const wishlistButtons = document.querySelectorAll(".wishlist-icon");
+// ==========================================
+// NAVIGATION WISHLIST
+// ==========================================
 
-wishlistButtons.forEach(function(button) {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    button.addEventListener("click", function(event) {
+        const wishlist =
+            document.querySelector(".wishlist-icon");
 
-        event.preventDefault();
+        if (wishlist) {
 
-        if (button.textContent.trim() === "♡") {
-            button.textContent = "♥";
-        } else {
-            button.textContent = "♡";
+            wishlist.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    const icon =
+                        wishlist.querySelector("i");
+
+                    icon.classList.toggle(
+                        "fa-regular"
+                    );
+
+                    icon.classList.toggle(
+                        "fa-solid"
+                    );
+
+                }
+            );
+
         }
 
-    });
 
-});
+        // ==================================
+        // PRODUCT HEART BUTTONS
+        // ==================================
+
+        const productHearts =
+            document.querySelectorAll(
+                ".product-heart"
+            );
+
+
+        productHearts.forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const icon =
+                            button.querySelector("i");
+
+                        icon.classList.toggle(
+                            "fa-regular"
+                        );
+
+                        icon.classList.toggle(
+                            "fa-solid"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+// ==========================================
+// NEWSLETTER
+// ==========================================
+
+function subscribeNewsletter(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById(
+            "emailInput"
+        ).value.trim();
+
+
+    if (email === "") {
+
+        alert(
+            "Please enter your email address."
+        );
+
+        return;
+    }
+
+
+    alert(
+        "Thank you for subscribing!"
+    );
+
+
+    document.getElementById(
+        "emailInput"
+    ).value = "";
+
+}
