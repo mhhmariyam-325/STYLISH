@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart - Sneakers</title>
+
+<link rel="stylesheet" href="newstyle.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVIGATION BAR -->
+    <!-- ============================= -->
+
+    <header class="navbar">
+
+        <nav>
+
+            <a href="index.html" class="logo">
+                SNEAKERS
+            </a>
+
+            <div class="nav-icons">
+
+    <a href="index.html" title="Home">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <a href="cart.html" class="cart-icon" title="Shopping Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+    </a>
+
+</div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- CART SECTION -->
+    <!-- ============================= -->
+
+<main class="cart-page">
+        <h1>Shopping Cart</h1>
+
+        <div id="cartItems">
+            <!-- Cart products will appear here -->
+        </div>
+
+
+        <!-- CART SUMMARY -->
+
+        <div class="cart-summary">
+
+            <h2>Cart Summary</h2>
+
+            <p>
+                Subtotal:
+                Rs. <span id="cartSubtotal">0</span>
+            </p>
+
+            <p>
+                Total:
+                Rs. <span id="cartTotal">0</span>
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
