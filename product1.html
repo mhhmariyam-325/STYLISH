@@ -191,6 +191,60 @@
 
     <script src="script.js"></script>
 
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+
+    async function loadProductDetails() {
+        if (!productId) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/products"
+            );
+
+            const products = await response.json();
+
+            const product = products.find(
+                p => String(p.id) === String(productId)
+            );
+
+            if (!product) {
+                console.error("Product not found");
+                return;
+            }
+
+            document.querySelector(".product-details-image img").src =
+                product.image;
+
+            document.querySelector(".product-details-image img").alt =
+                product.name;
+
+            document.querySelector(".product-details-info h1").textContent =
+                product.name;
+
+            document.querySelector(".product-details-info h2").textContent =
+                "Rs. " + Number(product.price).toLocaleString();
+
+            document.querySelector(".add-cart-button").onclick = function () {
+                addToCart(product.name);
+            };
+
+            document.title = "STYLISH | " + product.name;
+
+        } catch (error) {
+            console.error("Error loading product:", error);
+        }
+    }
+
+    loadProductDetails();
+</script>
+
+</body>
+</html>
 </body>
 
 </html>

@@ -58,21 +58,27 @@
 
         <!-- CART SUMMARY -->
 
-        <div class="cart-summary">
+        
+<div class="cart-summary">
 
-            <h2>Cart Summary</h2>
+    <h2>Cart Summary</h2>
 
-            <p>
-                Subtotal:
-                Rs. <span id="cartSubtotal">0</span>
-            </p>
+    <p>
+        Subtotal:
+        Rs. <span id="cartSubtotal">0</span>
+    </p>
 
-            <p>
-                Total:
-                Rs. <span id="cartTotal">0</span>
-            </p>
+    <p>
+        Total:
+        Rs. <span id="cartTotal">0</span>
+    </p>
 
-        </div>
+    <button onclick="goToCheckout()" class="checkout-button">
+        Proceed to Checkout
+    </button>
+
+</div>
+        
 
     </main>
 
@@ -82,7 +88,11 @@
     <!-- ============================= -->
 
     <script src="script.js"></script>
-
+<script>
+    function goToCheckout() {
+        window.location.href = "checkout.html";
+    }
+</script>
 </body>
 
 </html>

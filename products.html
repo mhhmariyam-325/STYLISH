@@ -84,7 +84,7 @@
         </div>
 
 
-        <div class="product-grid">
+        <div class="product-grid" id="productGrid">
 
             <!-- PRODUCT 1 -->
             <div class="product-card">
@@ -360,6 +360,65 @@
 
 
     <script src="script.js"></script>
+<script>
+    async function loadProductsFromDatabase() {
 
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/products"
+            );
+
+            if (!response.ok) {
+                throw new Error("Failed to load products");
+            }
+
+            const products = await response.json();
+
+            const productGrid =
+                document.getElementById("productGrid");
+
+            const cards =
+                productGrid.querySelectorAll(".product-card");
+
+            products.forEach((product, index) => {
+
+                if (!cards[index]) {
+                    return;
+                }
+
+                const card = cards[index];
+
+                card.querySelector("img").src =
+                    product.image;
+
+                card.querySelector("img").alt =
+                    product.name;
+
+                card.querySelector("h3").textContent =
+                    product.name;
+
+                card.querySelector("strong").textContent =
+                    "Rs. " +
+                    Number(product.price).toLocaleString();
+
+                const detailsLink =
+                    card.querySelector("a");
+
+                detailsLink.href =
+                    "product" + product.id + ".html";
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Error loading products:",
+                error
+            );
+
+        }
+    }
+
+    loadProductsFromDatabase();
+</script>
 </body>
 </html>

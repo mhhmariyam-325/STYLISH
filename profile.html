@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+</head>
+
+<body>
+
+    <h1>My Profile</h1>
+
+
+    <div id="profile">
+
+        Loading profile...
+
+    </div>
+
+
+    <h2>Edit Profile</h2>
+
+
+    <form id="profileForm">
+
+        <label>
+            Full Name:
+        </label>
+
+        <br>
+
+        <input
+            type="text"
+            id="fullName"
+            required
+        >
+
+        <br><br>
+
+
+        <label>
+            Email:
+        </label>
+
+        <br>
+
+        <input
+            type="email"
+            id="email"
+            disabled
+        >
+
+        <br><br>
+
+
+        <label>
+            Phone:
+        </label>
+
+        <br>
+
+        <input
+            type="text"
+            id="phone"
+        >
+
+        <br><br>
+
+
+        <label>
+            Shipping Address:
+        </label>
+
+        <br>
+
+        <textarea
+            id="shippingAddress"
+            rows="4"
+            cols="40"
+        ></textarea>
+
+        <br><br>
+
+
+        <label>
+            Billing Address:
+        </label>
+
+        <br>
+
+        <textarea
+            id="billingAddress"
+            rows="4"
+            cols="40"
+        ></textarea>
+
+        <br><br>
+
+
+        <button type="submit">
+            Save Details
+        </button>
+
+    </form>
+<h2>Change Password</h2>
+
+<form id="passwordForm">
+
+    <label>
+        Current Password:
+    </label>
+
+    <br>
+
+    <input
+        type="password"
+        id="currentPassword"
+        required
+    >
+
+    <br><br>
+
+
+    <label>
+        New Password:
+    </label>
+
+    <br>
+
+    <input
+        type="password"
+        id="newPassword"
+        minlength="8"
+        required
+    >
+
+    <br><br>
+
+
+    <label>
+        Confirm New Password:
+    </label>
+
+    <br>
+
+    <input
+        type="password"
+        id="confirmPassword"
+        minlength="8"
+        required
+    >
+
+    <br><br>
+
+
+    <button type="submit">
+        Change Password
+    </button>
+
+</form>
+
+<p id="passwordMessage"></p>
+    <p id="message"></p>
+
+
+    <br>
+
+    <button onclick="logoutUser()">
+        Logout
+    </button>
+
+
+    <script>
+
+        // ===============================
+        // LOAD PROFILE
+        // ===============================
+
+        async function loadProfile() {
+
+            try {
+
+                const response =
+                    await fetch("/api/profile");
+
+                const data =
+                    await response.json();
+
+
+                if (!data.success) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                const user = data.user;
+
+
+                // Display profile information
+
+                document.getElementById("profile")
+                    .innerHTML = `
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${user.full_name}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${user.email}
+                        </p>
+
+                        <p>
+                            <strong>Registration Date:</strong>
+                            ${user.created_at}
+                        </p>
+
+                        <p>
+                            <strong>Role:</strong>
+                            ${user.role}
+                        </p>
+                        <p><strong>Status:</strong> Active Member</p>
+
+                    `;
+
+
+                // Put current values into form
+
+                document.getElementById("fullName")
+                    .value = user.full_name || "";
+
+
+                document.getElementById("email")
+                    .value = user.email || "";
+
+
+                document.getElementById("phone")
+                    .value = user.phone || "";
+
+
+                document.getElementById("shippingAddress")
+                    .value =
+                    user.shipping_address || "";
+
+
+                document.getElementById("billingAddress")
+                    .value =
+                    user.billing_address || "";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                document.getElementById("profile")
+                    .textContent =
+                    "Unable to load profile.";
+
+            }
+
+        }
+
+
+        // ===============================
+        // UPDATE PROFILE
+        // ===============================
+
+        document.getElementById("profileForm")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                const fullName =
+                    document.getElementById("fullName").value;
+
+                const phone =
+                    document.getElementById("phone").value;
+
+                const shippingAddress =
+                    document.getElementById("shippingAddress").value;
+
+                const billingAddress =
+                    document.getElementById("billingAddress").value;
+
+
+                try {
+
+                    const response =
+                        await fetch("/api/profile", {
+
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                fullName:
+                                    fullName,
+
+                                phone:
+                                    phone,
+
+                                shippingAddress:
+                                    shippingAddress,
+
+                                billingAddress:
+                                    billingAddress
+
+                            })
+
+                        });
+
+
+                    const data =
+                        await response.json();
+
+
+                    const message =
+                        document.getElementById("message");
+
+
+                    if (data.success) {
+
+                        message.textContent =
+                            "Profile updated successfully!";
+
+                        // Reload displayed information
+                        loadProfile();
+
+                    } else {
+
+                        message.textContent =
+                            data.message;
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    document.getElementById("message")
+                        .textContent =
+                        "Unable to update profile.";
+
+                }
+
+            });
+
+// ===============================
+// CHANGE PASSWORD
+// ===============================
+
+document.getElementById("passwordForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        const currentPassword =
+            document.getElementById("currentPassword").value;
+
+        const newPassword =
+            document.getElementById("newPassword").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        try {
+
+            const response =
+                await fetch("/api/change-password", {
+
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        currentPassword:
+                            currentPassword,
+
+                        newPassword:
+                            newPassword,
+
+                        confirmPassword:
+                            confirmPassword
+
+                    })
+
+                });
+
+
+            const data =
+                await response.json();
+
+
+            document.getElementById("passwordMessage")
+                .textContent = data.message;
+
+
+            if (data.success) {
+
+                document.getElementById("passwordForm")
+                    .reset();
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            document.getElementById("passwordMessage")
+                .textContent =
+                "Unable to change password.";
+
+        }
+
+    });
+        // ===============================
+        // LOGOUT
+        // ===============================
+
+        async function logoutUser() {
+
+            const response =
+                await fetch("/api/logout", {
+
+                    method: "POST"
+
+                });
+
+
+            const data =
+                await response.json();
+
+
+            if (data.success) {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+
+
+        // Load profile when page opens
+        loadProfile();
+
+    </script>
+
+</body>
+
+</html>

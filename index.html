@@ -61,6 +61,8 @@
 
             <a href="#">Support</a>
 
+            <a href="admin.html">Admin</a>
+
         </nav>
 
 
@@ -79,14 +81,14 @@
         </div>
 
 
-        <div class="login">
+        <div class="login" id="userArea">
 
-            <a href="login.html">
-                <i class="fa-regular fa-user"></i>
-                Login
-            </a>
+    <a href="login.html">
+        <i class="fa-regular fa-user"></i>
+        Login
+    </a>
 
-        </div>
+</div>
 
 
         <div class="nav-icons">
@@ -722,7 +724,91 @@
 
 
     <script src="script.js"></script>
+<script>
 
+async function checkLoginStatus() {
+
+    try {
+
+        const response = await fetch("/api/session");
+
+        const data = await response.json();
+
+        const userArea =
+            document.getElementById("userArea");
+
+        if (!userArea) {
+            return;
+        }
+
+
+        if (data.loggedIn) {
+
+            userArea.innerHTML = `
+
+                <span>
+                    <i class="fa-regular fa-user"></i>
+                    ${data.user.full_name}
+                </span>
+
+                <a href="profile.html">
+                    Profile
+                </a>
+
+                <button onclick="logoutUser()">
+                    Logout
+                </button>
+
+            `;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to check login status:",
+            error
+        );
+
+    }
+
+}
+
+
+async function logoutUser() {
+
+    try {
+
+        const response =
+            await fetch("/api/logout", {
+
+                method: "POST"
+
+            });
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+checkLoginStatus();
+
+</script>
 </body>
 
 </html>

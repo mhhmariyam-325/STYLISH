@@ -64,42 +64,56 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 // Product information
-const products = {
-    "Nike Air Max 270": {
-        id: 1,
-        name: "Nike Air Max 270",
-        price: 32500,
-        image: "images/pic1.webp"
-    },
+// Product information loaded from database
+let products = {};
 
-    "Adidas Ultraboost 22": {
-        id: 2,
-        name: "Adidas Ultraboost 22",
-        price: 38000,
-        image: "images/pic2.jpg"
-    },
 
-    "Puma RS-X": {
-        id: 3,
-        name: "Puma RS-X",
-        price: 27500,
-        image: "images/pic3.jpg"
-    },
+// Load products from MySQL database
+async function loadProductsFromDatabase() {
 
-    "New Balance 550": {
-        id: 4,
-        name: "New Balance 550",
-        price: 29500,
-        image: "images/pic4.jpg"
-    },
+    try {
 
-    "Nike Air Force 1": {
-        id: 5,
-        name: "Nike Air Force 1",
-        price: 30000,
-        image: "images/pic5.jpg"
+        const response = await fetch(
+            "http://localhost:3000/api/products"
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load products");
+        }
+
+        const databaseProducts = await response.json();
+
+        // Convert database array into the same format
+        // used by the existing cart
+        databaseProducts.forEach(product => {
+
+            products[product.name] = {
+                id: product.id,
+                name: product.name,
+                price: Number(product.price),
+                image: product.image
+            };
+
+        });
+
+        console.log(
+            "Products loaded from database:",
+            products
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load products from database:",
+            error
+        );
+
     }
-};
+}
+
+
+// Load database products when the page starts
+loadProductsFromDatabase();
 
 
 // Add product to cart
