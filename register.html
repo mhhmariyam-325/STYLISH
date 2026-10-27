@@ -106,6 +106,7 @@
                     id="password"
                     name="password"
                     placeholder="Enter your password"
+                    minlength="8"
                     required
                 >
             </div>
@@ -162,8 +163,7 @@
         // Send registration data to backend
         try {
 
-            const response = await fetch("/api/register", {
-
+const response = await fetch("http://localhost:3000/api/register", {
                 method: "POST",
 
                 headers: {

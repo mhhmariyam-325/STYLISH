@@ -1,16 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Login - STYLISH</title>
-
     <link rel="stylesheet" href="newstyle.css">
 
     <style>
         .login-container {
             width: 400px;
+            max-width: calc(100% - 60px);
             margin: 60px auto;
             padding: 30px;
             background: white;
@@ -64,17 +64,12 @@
 </head>
 
 <body>
-
     <div class="login-container">
-
         <h1>Login</h1>
 
         <form id="loginForm">
-
-            <!-- Email -->
             <div class="form-group">
                 <label for="email">Email</label>
-
                 <input
                     type="email"
                     id="email"
@@ -84,10 +79,8 @@
                 >
             </div>
 
-            <!-- Password -->
             <div class="form-group">
                 <label for="password">Password</label>
-
                 <input
                     type="password"
                     id="password"
@@ -97,70 +90,66 @@
                 >
             </div>
 
-            <button type="submit" class="login-btn">
-                Login
-            </button>
-
-            <div id="message" class="message"></div>
-
+            <button type="submit" class="login-btn">Login</button>
+            <div id="message" class="message" role="status"></div>
         </form>
 
         <div class="register-link">
             Don't have an account?
             <a href="register.html">Create Account</a>
         </div>
-
     </div>
-<script>
-    const loginForm = document.getElementById("loginForm");
-    const message = document.getElementById("message");
 
-    loginForm.addEventListener("submit", async function(event) {
+    <script>
+        const API_URL = "http://localhost:3000";
+        const loginForm = document.getElementById("loginForm");
+        const message = document.getElementById("message");
 
-        event.preventDefault();
+        loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
 
-        const email =
-            document.getElementById("email").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
 
-        const password =
-            document.getElementById("password").value;
+            if (!email || !password) {
+                message.textContent = "Please enter your email and password.";
+                return;
+            }
 
-        if (!email || !password) {
-            message.textContent = "Please fill in all fields.";
-            return;
-        }
+            message.textContent = "Logging in...";
 
-        try {
+            try {
+                const response = await fetch(`${API_URL}/api/login`, {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
 
-            const response = await fetch("/api/login", {
+                const data = await response.json();
 
-                method: "POST",
+                if (!response.ok || !data.success) {
+                    message.textContent =
+                        data.message || "Login failed. Please try again.";
+                    return;
+                }
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                message.textContent = "Login successful!";
 
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            });
+                if (data.user && data.user.role === "admin") {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "index.html";
+                }
 
-            const data = await response.json();
-
-            message.textContent = data.message;
-
-        } catch (error) {
-
-            console.error(error);
-
-            message.textContent =
-                "Unable to connect to the server.";
-        }
-    });
-</script>
-    
-
-            
+            } catch (error) {
+                console.error("Login error:", error);
+                message.textContent =
+                    "Unable to connect to the server. Check that Node.js is running.";
+            }
+        });
+    </script>
 </body>
 </html>

@@ -6,11 +6,18 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 const db = require("./db");
 const app = express();
+const PORT = 3000;
+
 app.use(express.json());
+
 // Allow requests from the website
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "http://localhost");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, DELETE, OPTIONS"
+    );
     res.header("Access-Control-Allow-Headers", "Content-Type");
 
     if (req.method === "OPTIONS") {
@@ -19,8 +26,6 @@ app.use((req, res, next) => {
 
     next();
 });
-const PORT = 3000;
-
 
 // ===============================
 // MIDDLEWARE

@@ -418,7 +418,33 @@
         }
     }
 
-    loadProductsFromDatabase();
+async function applyProductSearch() {
+    const params = new URLSearchParams(window.location.search);
+    const searchTerm = params.get("search");
+
+    if (!searchTerm) return;
+
+    const productGrid = document.getElementById("productGrid");
+    const cards = productGrid.querySelectorAll(".product-card");
+    let found = 0;
+
+    cards.forEach(function (card) {
+        const name = card.querySelector("h3").textContent.toLowerCase();
+        const matches = name.includes(searchTerm.toLowerCase());
+
+        card.style.display = matches ? "" : "none";
+
+        if (matches) found++;
+    });
+
+    const heading = document.querySelector(".center-heading h2");
+    heading.textContent = found > 0
+        ? "SEARCH RESULTS"
+        : "NO SNEAKERS FOUND";
+}
+
+loadProductsFromDatabase().then(applyProductSearch);
+
 </script>
 </body>
 </html>
